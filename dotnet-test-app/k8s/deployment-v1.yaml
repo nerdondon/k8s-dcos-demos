@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dotnet-test-app
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        name: dotnet-test-app-pods
+        color: blue
+    spec:
+      containers:
+      - name: dotnet-test-app-container
+        image: dotnet-test-app:v1
+        ports:
+        - containerPort: 3000
