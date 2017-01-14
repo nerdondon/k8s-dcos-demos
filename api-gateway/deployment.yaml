@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+    name: nginx
+spec:
+    replicas: 1
+    template:
+        metadata:
+            labels:
+                name: nginx-pods
+        spec:
+            containers:
+            - image: nginx-lb
+                name: nginxlb-container
+                imagePullPolicy: always
+                ports:
+                - name: http
+                  containerPort: 80
