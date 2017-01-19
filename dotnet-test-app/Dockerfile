@@ -4,6 +4,6 @@ MAINTAINER William Don
 LABEL Name=dotnet-test-app Version=0.0.1 
 ARG source=./publish
 WORKDIR /app
-EXPOSE 3000
+EXPOSE 80
 COPY $source .
 ENTRYPOINT dotnet dotnet-test-app.dll

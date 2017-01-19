@@ -14,4 +14,4 @@ spec:
       - name: dotnet-test-app-container
         image: dotnet-test-app:v1
         ports:
-        - containerPort: 3000
+        - containerPort: 80

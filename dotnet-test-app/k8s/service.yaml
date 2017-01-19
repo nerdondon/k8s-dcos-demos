@@ -3,8 +3,9 @@ kind: Service
 metadata:
     name: dotnet-test-app
 spec:
+    type: NodePort
     selector:
         name: dotnet-test-app-pods
     ports:
     - port: 80
-      targetPort: 3000
+      targetPort: 80
