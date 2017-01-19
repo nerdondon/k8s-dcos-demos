@@ -23,7 +23,15 @@ The resource group location is where the resource group's **metadata** is stored
 ```
 DNS_PREFIX=<some-unique-value>
 CLUSTER_NAME=<cluster name>
-az acs create --orchestrator-type=kubernetes --resource-group $RESOURCE_GROUP --name=$CLUSTER_NAME --dns-prefix=$DNS_PREFIX
+NUM_AGENTS=<default is 3>
+az acs create --orchestrator-type=kubernetes --resource-group $RESOURCE_GROUP --name=$CLUSTER_NAME --dns-prefix=$DNS_PREFIX --agent-count=$NUM_AGENTS
+```
+
+I did:
+```
+DNS_PREFIX=will-the-federation
+CLUSTER_NAME=the-federation
+NUM_AGENTS=4
 ```
 
 3. Install `kubectl`
@@ -32,8 +40,12 @@ az acs create --orchestrator-type=kubernetes --resource-group $RESOURCE_GROUP --
 
 4. Configure `kubectl`:
 ```
-az acs kubernetes get-credentials --name=$CLUSTER_NAME --location=$LOCATION
+az acs kubernetes get-credentials --resource-group=$RESOURCE_GROUP --name=$CLUSTER_NAME
 ```
+*Note: The azure-cli (az) is still in preview so you may experience an issue on macOS with password
+protected ssh private keys. To get around this I manually copied the .kube/config from the kube master node 
+with scp as specified in the [**Details** section](https://docs.microsoft.com/en-us/azure/container-service/container-service-kubernetes-walkthrough#details) 
+of the docs.*
 
 # TODOS
 1. Create federated cluster for multi-region deployments
