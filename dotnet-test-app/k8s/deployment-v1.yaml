@@ -13,5 +13,12 @@ spec:
       containers:
       - name: dotnet-test-app-container
         image: dotnet-test-app:v1
+        resources:
+          limits:
+            cpu: 200m
+            memory: 30Mi
+          requests:
+            cpu: 100m
+            memory: 20Mi
         ports:
         - containerPort: 80
