@@ -10,6 +10,10 @@ namespace dotnet_test_app.Controllers
     {
         public IActionResult Index()
         {
+            var podNodeName = Environment.GetEnvironmentVariable("POD_NODE_NAME");
+            var podName = Environment.GetEnvironmentVariable("POD_NAME");
+            ViewData["POD_NODE_NAME"] = podNodeName;
+            ViewData["POD_NAME"] = podName;
             return View();
         }
         

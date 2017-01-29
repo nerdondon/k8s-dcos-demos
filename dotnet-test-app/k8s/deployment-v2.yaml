@@ -20,5 +20,14 @@ spec:
           requests:
             cpu: 100m
             memory: 20Mi
+        env:
+        - name: POD_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
         ports:
         - containerPort: 80
