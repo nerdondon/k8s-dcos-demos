@@ -13,5 +13,14 @@ spec:
       containers:
       - name: java-test-app-container
         image: java-test-app:v1
+        env:
+        - name: POD_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
         ports:
         - containerPort: 80
