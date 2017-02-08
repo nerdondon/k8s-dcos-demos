@@ -11,7 +11,9 @@ public class Application {
 
     @RequestMapping("/")
     public String home() {
-        return "Hello Docker World";
+        System.out.println(System.getProperties());
+        return "Hosted on node: " + System.getenv("POD_NODE_NAME") + "\n"
+            + " with name: " + System.getenv("POD_NAME");
     }
 
     public static void main(String[] args) {
