@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: dotnet-test-app-container
-        image: dotnet-test-app:v1
+        image: nerdondon/dotnet-test-app:v1
         resources:
           limits:
             cpu: 200m

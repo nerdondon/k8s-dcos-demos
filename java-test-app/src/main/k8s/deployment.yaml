@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: java-test-app-container
-        image: java-test-app:v1
+        image: nerdondon/java-test-app:v1
         env:
         - name: POD_NODE_NAME
           valueFrom:
