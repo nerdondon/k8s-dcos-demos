@@ -12,14 +12,24 @@
     kubectl create -f java-test-app/src/main/k8s/deployment.yaml --record
     ```
 
+    - Create load-balanced services
+    ```
+    kubectl create -f dotnet-test-app/k8s/service.lb.yaml --record
+    kubectl create -f java-test-app/src/main/k8s/service.lb.yaml --record
+    ```
+    - Get service IPs with `kubectl get services`
     - Talking points:
         - Show YAML manifests
         - Discuss service discovery:
             - DNS labels
             - Virtual networking and cluster IP's
             - Configuration management built on etcd cluster
-1. Run deployment for Traefik API Gateway
-1. Provision service that exposes gateway to internet
+1. Run deployment and provision ingress for Traefik API Gateway
+    - Talking points:
+        - We don't want to have separate public IP's and domain names for 
+        each service. Most often we want to have the services as a path 
+        off a root domain
+        - We can do this with an API gateway
 1. Explain scaling and show autoscaling
 1. Show rolling updates
     - Talking points:
