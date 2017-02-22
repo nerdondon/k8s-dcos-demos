@@ -30,6 +30,27 @@
     - Get service IPs with `kubectl get services`
 
 1. Show scaling and autoscaling
+    - Scale imperatively:
+    ```
+    kubectl scale deployment dotnet-test-app --replicas 7
+    kubectl get deployment
+    ```
+    or declaratively by changing manifest and `kubectl apply`
+    - Add an autoscaler
+    ```
+    kubectl create -f dotnet-test-app/k8s/hpa.yaml --record
+    ```
+    - Create some load
+    ```
+    kubectl run -i --tty load-generator --image=busybox /bin/sh
+    // While in pod prompt
+    while true; do wget -q -O- http://dotnet-test-app.default.svc.cluster.local; done
+    ```
+    - Check statuses
+    ```
+    kubectl get hpa
+    kubectl get deployment dotnet-test-app
+    ```
 1. Show rolling updates
     - Talking points:
         - Can pause rolling update for a canary test
@@ -37,10 +58,10 @@
     - Talking points:
         - Container immutability
 1. Show blue-green deployment
-1. Kill node to show self-healing
 1. Run deployment and provision ingress for Traefik API Gateway
     - Talking points:
         - We don't want to have separate public IP's and domain names for 
         each service. Most often we want to have the services as a path 
         off a root domain
         - We can do this with an API gateway
+1. Kill node to show self-healing
