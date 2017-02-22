@@ -10,18 +10,18 @@
             - Configuration management built on etcd cluster
     - .NET deployment
     ```
-    kubectl create -f dotnet-test-app/k8s/deployment-v1.yaml --record
+    kubectl create -f dotnet-test-app/k8s/deployment-v1.yaml --record --save-config
     ```
 
     - Java deployment
     ```
-    kubectl create -f java-test-app/src/main/k8s/deployment.yaml --record
+    kubectl create -f java-test-app/src/main/k8s/deployment.yaml --record --save-config
     ```
 
     - Create load-balanced services (may take a couple minutes, so set one up before demo and leave one for the demo)
     ```
-    kubectl create -f dotnet-test-app/k8s/service.lb.yaml --record
-    kubectl create -f java-test-app/src/main/k8s/service.lb.yaml --record
+    kubectl create -f dotnet-test-app/k8s/service.lb.yaml --record --save-config
+    kubectl create -f java-test-app/src/main/k8s/service.lb.yaml --record --save-config
     ```
     - Demo cluster DNS automation by hitting service internally from busyboxplus pod
     ```
@@ -52,8 +52,17 @@
     kubectl get deployment dotnet-test-app
     ```
 1. Show rolling updates
+    - Simply apply changes in the manifest from version control and update will occur in background
+    ```
+    kubectl apply -f dotnet-test-app/k8s/deployment-v2.yaml --record
+    ```
+    - Check status of pods and update
+    ```
+    
+    ```
     - Talking points:
-        - Can pause rolling update for a canary test
+        - Proportional scaling during updates
+        - Can pause rolling update for a canary test or use labels for canary
 1. Show rollback
     - Talking points:
         - Container immutability
