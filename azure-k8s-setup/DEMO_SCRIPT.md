@@ -58,12 +58,20 @@
     ```
     - Check status of pods and update
     ```
-    
+    kubectl rollout status deployment/dotnet-test-app
+    kubectl get deployments
     ```
     - Talking points:
         - Proportional scaling during updates
         - Can pause rolling update for a canary test or use labels for canary
 1. Show rollback
+    - Rollback to v1
+    ```
+    kubectl rollout history deployment/dotnet-test-app
+    kubectl rollout undo deployment/dotnet-test-app
+    // OR
+    kubectl rollout undo deployment/dotnet-test-app --to-revision=<#num>
+    ```
     - Talking points:
         - Container immutability
 1. Show blue-green deployment
