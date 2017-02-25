@@ -75,10 +75,29 @@
     - Talking points:
         - Container immutability
 1. Show blue-green deployment
+    - Create resources
+    ```
+    kubectl create -f dotnet-test-app/k8s/blue-green/deployment-v1.yaml --record --save-config
+    kubectl create -f dotnet-test-app/k8s/blue-green/service.yaml --record --save-config    
+    ```
+    - Show that v1 (blue) is being served
+    - Create version 2 deployment
+    ```
+    kubectl create -f dotnet-test-app/k8s/blue-green/deployment-v2.yaml --record --save-config
+    ```
+    - Change service label `kubectl label svc dotnet-test-app-bg color=green`
+    - Show that v2 (green) is being served
+    - Switch back label and show that it is v1 (blue) again
 1. Run deployment and provision ingress for Traefik API Gateway
+    - Run deployment
+    ```
+    kubectl create -f api-gateway/traefik/deployment.yaml --record --save-config
+    kubectl create -f api-gateway/traefik/path-based-ingress.yaml --record --save-config
+    ```
+    - Show ingress created in dashboard
+    - Hit endpoints via paths
     - Talking points:
         - We don't want to have separate public IP's and domain names for 
         each service. Most often we want to have the services as a path 
-        off a root domain
-        - We can do this with an API gateway
+        off a root domain. We can do this and lots more with an API gateway.
 1. Kill node to show self-healing
