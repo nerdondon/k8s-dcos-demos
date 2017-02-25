@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dotnet-test-app-blue
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        name: dotnet-test-app-pods-bg
+        color: blue
+    spec:
+      containers:
+      - name: dotnet-test-app-container
+        image: nerdondon/dotnet-test-app:v1
+        resources:
+          limits:
+            cpu: 200m
+            memory: 90Mi
+          requests:
+            cpu: 100m
+            memory: 70Mi
+        env:
+        - name: POD_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        ports:
+        - containerPort: 80
