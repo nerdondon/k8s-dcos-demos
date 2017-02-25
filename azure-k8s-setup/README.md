@@ -5,6 +5,7 @@ and some personal notes
 
 1. Resource group creation
 ```
+SSH_KEY_LOC=<location of SSH key>
 RESOURCE_GROUP=<name for your resource group>
 LOCATION=<Azure data region>
 az group create --name=$RESOURCE_GROUP --location=$LOCATION
@@ -12,6 +13,7 @@ az group create --name=$RESOURCE_GROUP --location=$LOCATION
 
 I did:
 ```
+SSH_KEY_LOC=<wouldn't you like to know :d>
 RESOURCE_GROUP=k8s-resource-group
 LOCATION=westus
 ```
@@ -24,7 +26,7 @@ The resource group location is where the resource group's **metadata** is stored
 DNS_PREFIX=<some-unique-value>
 CLUSTER_NAME=<cluster name>
 NUM_AGENTS=<default is 3>
-az acs create --orchestrator-type=kubernetes --resource-group $RESOURCE_GROUP --name=$CLUSTER_NAME --dns-prefix=$DNS_PREFIX --agent-count=$NUM_AGENTS
+az acs create --orchestrator-type=kubernetes --resource-group $RESOURCE_GROUP --name=$CLUSTER_NAME --dns-prefix=$DNS_PREFIX --agent-count=$NUM_AGENTS  --ssh-key-value=$SSH_KEY_LOC
 ```
 
 I did:
@@ -44,8 +46,8 @@ az acs kubernetes get-credentials --resource-group=$RESOURCE_GROUP --name=$CLUST
 ```
 *Note: The azure-cli (az) is still in preview so you may experience an issue on macOS with password
 protected ssh private keys. To get around this I manually copied the .kube/config from the kube master node 
-with scp as specified in the [**Details** section](https://docs.microsoft.com/en-us/azure/container-service/container-service-kubernetes-walkthrough#details) 
-of the docs.*
+with scp that was--removed for some reason--specified in the [**Details** section](https://docs.microsoft.com/en-us/azure/container-service/container-service-kubernetes-walkthrough#details) 
+of the docs. `scp azureuser@<YOUR_MASTER_FQDN>:.kube/config ~/.kube/config`*
 
 # TODOS
 1. Create federated cluster for multi-region deployments
