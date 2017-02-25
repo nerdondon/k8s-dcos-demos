@@ -6,7 +6,7 @@ metadata:
     traefik.frontend.rule.type: pathprefixstrip
 spec:
   rules:
-  - host: <domain for ingress>
+  - host: <FQDN for ingress or unspecified>
     http:
       paths:
       - path: /dotnet
