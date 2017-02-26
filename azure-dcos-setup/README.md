@@ -31,18 +31,20 @@ I did:
 ```
 DNS_PREFIX=will-starfleet
 CLUSTER_NAME=starfleet
-NUM_AGENTS=4
+NUM_AGENTS=5
 ```
 
-3. Install `kubectl`
-    - method from Kubernetes [docs](http://kubernetes.io/docs/user-guide/prereqs/)
-    - via Azure CLI 2.0: `az acs kubernetes install-cli`
+3. Connect to the cluster with ssh
+*Note 1: The master FQDN will be printed after running the creation commands above*
 
-4. Configure `kubectl`:
+*Note 2: Instructions are from the [Azure docs](https://docs.microsoft.com/en-us/azure/container-service/container-service-connect#connect-to-a-dcos-or-swarm-cluster)*
 ```
-az acs kubernetes get-credentials --resource-group=$RESOURCE_GROUP --name=$CLUSTER_NAME
+ssh -fNL 80:localhost:80 -p 2200 -i $SSH_KEY_LOC "azureuser@${DNS_PREFIX}mgmt.${LOCATION}.cloudapp.azure.com"
 ```
-*Note: The azure-cli (az) is still in preview so you may experience an issue on macOS with password
-protected ssh private keys. To get around this I manually copied the .kube/config from the kube master node 
-with scp that was--removed for some reason--specified in the [**Details** section](https://docs.microsoft.com/en-us/azure/container-service/container-service-kubernetes-walkthrough#details) 
-of the docs. `scp azureuser@<YOUR_MASTER_FQDN>:.kube/config ~/.kube/config`*
+
+4. Install the dcos CLI with these instructions from the (dcos docs)[https://dcos.io/docs/1.8/usage/cli/install]
+
+4. Access management UI's
+    - DC/OS: `http://localhost:80/`
+    - Marathon: `http://localhost:80/marathon`
+    - Mesos: `http://localhost:80/mesos`
