@@ -1,0 +1,3 @@
+[submodule "azure-dcos-setup/tweeter"]
+	path = azure-dcos-setup/tweeter
+	url = git@github.com:mesosphere/tweeter.git
