@@ -26,7 +26,7 @@ The resource group location is where the resource group's **metadata** is stored
 DNS_PREFIX=<some-unique-value>
 CLUSTER_NAME=<cluster name>
 NUM_AGENTS=<default is 3>
-az acs create --orchestrator-type=kubernetes --resource-group $RESOURCE_GROUP --name=$CLUSTER_NAME --dns-prefix=$DNS_PREFIX --agent-count=$NUM_AGENTS  --ssh-key-value=$SSH_KEY_LOC
+az acs create --orchestrator-type=kubernetes --resource-group $RESOURCE_GROUP --name=$CLUSTER_NAME --dns-prefix=$DNS_PREFIX --agent-count=$NUM_AGENTS --ssh-key-value=$SSH_KEY_LOC
 ```
 
 I did:
@@ -42,7 +42,7 @@ NUM_AGENTS=4
 
 4. Configure `kubectl`:
 ```
-az acs kubernetes get-credentials --resource-group=$RESOURCE_GROUP --name=$CLUSTER_NAME
+az acs kubernetes get-credentials --resource-group=$RESOURCE_GROUP --name=$CLUSTER_NAME --ssh-key-value=$SSH_KEY_LOC
 ```
 *Note: The azure-cli (az) is still in preview so you may experience an issue on macOS with password
 protected ssh private keys. To get around this I manually copied the .kube/config from the kube master node 
