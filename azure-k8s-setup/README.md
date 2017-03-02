@@ -13,7 +13,8 @@ az group create --name=$RESOURCE_GROUP --location=$LOCATION
 
 I did:
 ```
-SSH_KEY_LOC=<wouldn't you like to know :d>
+SSH_PUB_KEY=<wouldn't you like to know :d>
+SSH_PRIV_KEY=<wouldn't you like to know :d>
 RESOURCE_GROUP=k8s-resource-group
 LOCATION=westus
 ```
@@ -26,14 +27,14 @@ The resource group location is where the resource group's **metadata** is stored
 DNS_PREFIX=<some-unique-value>
 CLUSTER_NAME=<cluster name>
 NUM_AGENTS=<default is 3>
-az acs create --orchestrator-type=kubernetes --resource-group $RESOURCE_GROUP --name=$CLUSTER_NAME --dns-prefix=$DNS_PREFIX --agent-count=$NUM_AGENTS --ssh-key-value=$SSH_KEY_LOC
+az acs create --orchestrator-type=kubernetes --resource-group $RESOURCE_GROUP --name=$CLUSTER_NAME --dns-prefix=$DNS_PREFIX --agent-count=$NUM_AGENTS --ssh-key-value=$SSH_PUB_KEY --master-count 1
 ```
 
 I did:
 ```
 DNS_PREFIX=will-the-federation
 CLUSTER_NAME=the-federation
-NUM_AGENTS=4
+NUM_AGENTS=5
 ```
 
 3. Install `kubectl`
@@ -42,7 +43,7 @@ NUM_AGENTS=4
 
 4. Configure `kubectl`:
 ```
-az acs kubernetes get-credentials --resource-group=$RESOURCE_GROUP --name=$CLUSTER_NAME --ssh-key-value=$SSH_KEY_LOC
+az acs kubernetes get-credentials --resource-group=$RESOURCE_GROUP --name=$CLUSTER_NAME --ssh-key-file=$SSH_PRIV_KEY
 ```
 *Note: The azure-cli (az) is still in preview so you may experience an issue on macOS with password
 protected ssh private keys. To get around this I manually copied the .kube/config from the kube master node 
