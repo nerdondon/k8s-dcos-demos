@@ -8,7 +8,6 @@ spec:
     metadata:
       labels:
         name: dotnet-test-app-pods
-        color: blue
     spec:
       containers:
       - name: dotnet-test-app-container
@@ -16,7 +15,7 @@ spec:
         resources:
           limits:
             cpu: 200m
-            memory: 200Mi
+            memory: 250Mi
           requests:
             cpu: 100m
             memory: 100Mi

@@ -1,7 +1,7 @@
 {
     "id": "dotnet-test-app",
     "cpus": 0.1,
-    "mem": 90.0,
+    "mem": 250.0,
     "instances": 3,
     "acceptedResourceRoles": [
         "slave_public"

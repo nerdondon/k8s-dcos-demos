@@ -16,10 +16,10 @@ spec:
         resources:
           limits:
             cpu: 200m
-            memory: 90Mi
+            memory: 250Mi
           requests:
             cpu: 100m
-            memory: 70Mi
+            memory: 100Mi
         env:
         - name: POD_NODE_NAME
           valueFrom:
