@@ -51,7 +51,8 @@
     kubectl get hpa
     kubectl get deployment dotnet-test-app
     ```
-1. Show rolling updates
+    - **TODO: make a longer page load to increase CPU usage and reset hpa target cpu to 50**
+1. Show rolling updates - resume testing here
     - Simply apply changes in the manifest from version control and update will occur in background
     ```
     kubectl apply -f dotnet-test-app/k8s/deployment-v2.yaml --record
