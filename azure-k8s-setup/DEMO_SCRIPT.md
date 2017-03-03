@@ -28,31 +28,8 @@
     kubectl run curl --image=radial/busyboxplus:curl -i --tty
     ```
     - Get service IPs with `kubectl get services`
-
-1. Show scaling and autoscaling
-    - Scale imperatively:
-    ```
-    kubectl scale deployment dotnet-test-app --replicas 7
-    kubectl get deployment
-    ```
-    or declaratively by changing manifest and `kubectl apply`
-    - Add an autoscaler
-    ```
-    kubectl create -f dotnet-test-app/k8s/hpa.yaml --record
-    ```
-    - Create some load
-    ```
-    kubectl run -i --tty load-generator --image=busybox /bin/sh
-    // While in pod prompt
-    while true; do wget -q -O- http://dotnet-test-app.default.svc.cluster.local; done
-    ```
-    - Check statuses
-    ```
-    kubectl get hpa
-    kubectl get deployment dotnet-test-app
-    ```
-    - **TODO: make a longer page load to increase CPU usage and reset hpa target cpu to 50**
-1. Show rolling updates - resume testing here
+  
+1. Show rolling updates **- resume testing here**
     - Simply apply changes in the manifest from version control and update will occur in background
     ```
     kubectl apply -f dotnet-test-app/k8s/deployment-v2.yaml --record
@@ -102,3 +79,25 @@
         each service. Most often we want to have the services as a path 
         off a root domain. We can do this and lots more with an API gateway.
 1. Kill node to show self-healing
+1. Show scaling and autoscaling
+    - Scale imperatively:
+    ```
+    kubectl scale deployment dotnet-test-app --replicas 7
+    kubectl get deployment
+    ```
+    or declaratively by changing manifest and `kubectl apply`
+    - Add an autoscaler
+    ```
+    kubectl create -f dotnet-test-app/k8s/hpa.yaml --record
+    ```
+    - Create some load
+    ```
+    kubectl run -i --tty load-generator --image=busybox /bin/sh
+    // While in pod prompt
+    while true; do wget -q -O- http://dotnet-test-app.default.svc.cluster.local; done
+    ```
+    - Check statuses
+    ```
+    kubectl get hpa
+    kubectl get deployment dotnet-test-app
+    ```
