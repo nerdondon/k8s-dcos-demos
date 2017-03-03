@@ -41,7 +41,7 @@
     ```
     - Talking points:
         - Proportional scaling during updates
-        - Can pause rolling update for a canary test or use labels for canary
+        - Use labels for canary tests
 1. Show rollback
     - Rollback to v1
     ```
