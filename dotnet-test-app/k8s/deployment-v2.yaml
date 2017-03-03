@@ -30,3 +30,4 @@ spec:
               fieldPath: metadata.name
         ports:
         - containerPort: 80
+        imagePullPolicy: Always
