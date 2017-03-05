@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: dotnet-test-app
 spec:
-  replicas: 3
+  replicas: 7
   template:
     metadata:
       labels:
@@ -14,7 +14,7 @@ spec:
         image: nerdondon/dotnet-test-app:v2
         resources:
           limits:
-            cpu: 200m
+            cpu: 700m
             memory: 250Mi
           requests:
             cpu: 100m
