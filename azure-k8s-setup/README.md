@@ -5,7 +5,8 @@ and some personal notes
 
 1. Resource group creation
 ```
-SSH_KEY_LOC=<location of SSH key>
+SSH_PUB_KEY=</path/to/key.pub>
+SSH_PRIV_KEY=</path/to/key>
 RESOURCE_GROUP=<name for your resource group>
 LOCATION=<Azure data region>
 az group create --name=$RESOURCE_GROUP --location=$LOCATION
