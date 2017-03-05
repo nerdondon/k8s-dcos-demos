@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dotnet-test-app
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        name: dotnet-test-app-pods
+    spec:
+      containers:
+      - name: dotnet-test-app-container
+        image: nerdondon/dotnet-test-app:slow
+        resources:
+          limits:
+            cpu: 200m
+            memory: 250Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: POD_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always
