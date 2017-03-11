@@ -1,5 +1,7 @@
 # Demo Script
 
+**Note: All docker images pull from my (nerdondon) docker hub repositories. To use your own repos, build, push, and modify the deployment manifests accordingly.**
+
 1. Run `kubectl proxy` to get local access to the k8s dashboard
 
 1. Run deployments and provision services for test apps
