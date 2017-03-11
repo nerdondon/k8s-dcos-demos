@@ -1,7 +1,7 @@
 # Orchestration Demo
 
 Repo of resources that I used in a presentation to demonstrate the capabilities 
-and benefits of containers and orchestration technologies. Just consolidated a lot of examples 
+and benefits of containers and orchestration technologies. Consolidated a lot of examples 
 from various articles and the docs.
 
 # Particularly helpful references:
@@ -15,3 +15,6 @@ from various articles and the docs.
 
 # Author
 William Don (nerdondon)
+
+# License
+MIT (unless otherwise stated in a sublicense)
