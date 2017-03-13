@@ -91,20 +91,26 @@
     - Show that v2 (green) is being served
     - Switch back label and show that it is v1 (blue) again. Also show update via dashboard
 
-1. Run deployment and provision ingress for Traefik API Gateway  **- resume testing here**
+1. Run deployment and provision ingress for Traefik API Gateway
     - Run deployment
     ```
     kubectl create -f api-gateway/traefik/deployment.yaml --record --save-config
+    kubectl create -f api-gateway/traefik/service.lb.yaml --record --save-config
     kubectl create -f api-gateway/traefik/path-based-ingress.yaml --record --save-config
     ```
     - Show ingress created in dashboard
-    - Hit endpoints via paths
+    - Hit endpoints via paths:
+    ```
+    <traefik svc ip>/dotnet
+    <traefik svc ip>/java
+    ```
     - Talking points:
         - We don't want to have separate public IP's and domain names for 
         each service. Most often we want to have the services as a path 
         off a root domain. We can do this and lots more with an API gateway.
         
 1. Kill node to show self-healing
+    - **TODO: We need to change the pod eviction timeout so that we don't have to wait 5 minutes for this demo `--pod-eviction-timeout 1m`. This is a flag on the kube-controller-manager daemon. I don't know how to change this on the kube-controller-manager pod that runs with Azure**
 
 1. Show autoscaling
     - Deploy slow version of dotnet-test-app
