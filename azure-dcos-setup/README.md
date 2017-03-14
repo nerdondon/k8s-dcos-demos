@@ -18,7 +18,7 @@ and some personal notes
     SSH_PUB_KEY=<wouldn't you like to know :d>
     SSH_PRIV_KEY=<wouldn't you like to know :d>
     RESOURCE_GROUP=dcos-resource-group
-    LOCATION=westus
+    LOCATION=southcentralus
     ```
 
 1. Cluster creation
@@ -42,7 +42,7 @@ and some personal notes
 
     *Note 2: Instructions are from the [Azure docs](https://docs.microsoft.com/en-us/azure/container-service/container-service-connect#connect-to-a-dcos-or-swarm-cluster)*
     ```
-    ssh -fNL 80:localhost:80 -p 2200 -i $SSH_PRIV_KEY "azureuser@${DNS_PREFIX}mgmt.${LOCATION}.cloudapp.azure.com"
+    ssh -fNL 80:localhost:80 -p 2200 -i $SSH_PRIV_KEY azureuser@${DNS_PREFIX}mgmt.${LOCATION}.cloudapp.azure.com
     ```
 
 1. Install the dcos CLI with these instructions from the [dcos docs](https://dcos.io/docs/1.8/usage/cli/install)
