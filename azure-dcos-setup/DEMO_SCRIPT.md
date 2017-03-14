@@ -8,10 +8,10 @@
     - `dcos marathon app add dotnet-test-app/dcos/deployment.json`
 1. Check that the sample app is served publicly by hitting FQDN of agent pool
     - FQDN usally in the format of: `http://<DNS PREFIX>agents.westus.cloudapp.azure.com:10002`
-    - Mine was: `http://will-starfleetagents.westus.cloudapp.azure.com:10002`
+    - Mine was: `http://will-starfleetagents.southcentralus.cloudapp.azure.com:10002`
 1. Turn on app that posts 100K 'tweets'
     - `dcos marathon app add azure-dcos-setup/tweeter/post-tweets.json`
 1. Show Tweeter Zeppelin notebook
-    - We have an open ssh tunnel so hit zeppelin at `http://localhost/service/zeppelin`
+    - We have an open ssh tunnel so hit zeppelin at `http://localhost:8000/service/zeppelin`
     - Talking points:
         - Discuss SMACK stack
