@@ -41,6 +41,11 @@ and some personal notes
     *Note 1: The master FQDN will be printed after running the creation commands above*
 
     *Note 2: Instructions are from the [Azure docs](https://docs.microsoft.com/en-us/azure/container-service/container-service-connect#connect-to-a-dcos-or-swarm-cluster)*
+    - Method 1 (Azure CLI)
+    ```
+    az acs dcos browse --name=$CLUSTER_NAME --resource-group $RESOURCE_GROUP --disable-browser --ssh-key-file=$SSH_PRIV_KEY
+    ```
+    - Method 2 (manual SSH tunnel)
     ```
     ssh -fNL 80:localhost:80 -p 2200 -i $SSH_PRIV_KEY azureuser@${DNS_PREFIX}mgmt.${LOCATION}.cloudapp.azure.com
     ```
