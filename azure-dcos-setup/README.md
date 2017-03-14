@@ -47,17 +47,19 @@ and some personal notes
     ```
     - Method 2 (manual SSH tunnel)
     ```
-    ssh -fNL 80:localhost:80 -p 2200 -i $SSH_PRIV_KEY azureuser@${DNS_PREFIX}mgmt.${LOCATION}.cloudapp.azure.com
+    ssh -fNL 8000:localhost:80 -p 2200 -i $SSH_PRIV_KEY azureuser@${DNS_PREFIX}mgmt.${LOCATION}.cloudapp.azure.com
     ```
 
 1. Install the dcos CLI with these instructions from the [dcos docs](https://dcos.io/docs/1.8/usage/cli/install)
     - Summary of login procedure repeated here:
     ```
+    # In general:
     dcos config set core.dcos_url <insert master FQDN or IP>
-    dcos auth login
+    # Special case for azure because of SSH tunnel:
+    dcos config set core.dcos_url http://localhost:8000
     ```
 
 1. Access management UI's
-    - DC/OS: `http://localhost:80/`
-    - Marathon: `http://localhost:80/marathon`
-    - Mesos: `http://localhost:80/mesos`
+    - DC/OS: `http://localhost:8000/`
+    - Marathon: `http://localhost:8000/marathon`
+    - Mesos: `http://localhost:8000/mesos`
