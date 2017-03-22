@@ -3,6 +3,8 @@
 Mainly a re-hash from the [Azure Docs](https://docs.microsoft.com/en-us/azure/container-service/container-service-kubernetes-walkthrough)
 and some personal notes
 
+1. *(Optional if you already have SSH keys)* Create a pair of SSH keys. Microsoft has some nice docs for this [here](https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-linux-mac-create-ssh-keys).
+
 1. Resource group creation
     ```
     SSH_PUB_KEY=</path/to/key.pub>
